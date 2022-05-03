@@ -7,9 +7,11 @@ public with sharing class QuoteToSalesAgreementAction {
     public static List<SalesAgreement> createSalesAgreements(List<Id> quoteIds) {
         List<Quote> quotes = QuoteSelector.getQuotes(quoteIds);
         List<SalesAgreement> newSalesAgreements = new List<SalesAgreement>();
-        List<SalesAgreementProduct> newSalesAgreementProducts = new List<SalesAgreementProduct>();
+        List<SalesAgreementModel> newSalesAgreementModels = new List<SalesAgreementModel>();
         for (Quote quote : quotes) {
-            SalesAgreementModel agreementModel = SalesAgreementService.createSalesAgreement(quote);
+            SalesAgreementModel agreementModel = new SalesAgreementModel();
+            agreementModel.createSalesAgreement(quote);
+            newSalesAgreements.add(agreementModel.salesAgreement);
         }
         insert newSalesAgreements;
         return newSalesAgreements;
