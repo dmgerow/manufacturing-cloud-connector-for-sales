@@ -1,23 +1,24 @@
 global with sharing class QuoteToSalesAgreementAction {
     @InvocableMethod(
-        label='Create Sales Agreement Products'
-        description='Creates Sales Agreement Products and Schedules from a Quote. Returns created Sales Agreement(s).'
+        label='Create Sales Agreement Products from Quote'
+        description='Creates Sales Agreement Products and Schedules from a Quote.'
         category='Manufacturing Cloud'
     )
-    global static void createSalesAgreementProducts(List<Id> salesAgreementIds) {
-        List<SalesAgreement> salesAgreements = getSalesAgreements(salesAgreementIds);
+    global static void createSalesAgreementProducts(List<SalesAgreement> salesAgreements) {
+        System.debug(JSON.serializePretty(salesAgreements));
         Map<Id, List<QuoteLineItem>> quoteLinesByQuoteId = getQuoteLinesByQuoteId(
             SalesAgreementUtilities.getQuoteIds(salesAgreements)
         );
-    }
-
-    public static List<SalesAgreement> getSalesAgreements(List<Id> salesAgreementIds) {
-        return [
-            SELECT Quote__c
-            FROM SalesAgreement
-            WHERE Id IN :salesAgreementIds
-            WITH SECURITY_ENFORCED
-        ];
+        List<SalesAgreementProduct> salesAgreementProducts = new List<SalesAgreementProduct>();
+        for (SalesAgreement salesAgreement : salesAgreements) {
+            SalesAgreementModel agreementModel = new SalesAgreementModel(salesAgreement);
+            agreementModel.createSalesAgreementProducts(
+                quoteLinesByQuoteId.get(salesAgreement.Quote__c)
+            );
+            salesAgreementProducts.addAll(agreementModel.salesAgreementProducts);
+        }
+        System.debug(JSON.serializePretty(salesAgreementProducts));
+        insert salesAgreementProducts;
     }
 
     public static Map<Id, List<QuoteLineItem>> getQuoteLinesByQuoteId(Set<Id> quoteIds) {
@@ -25,13 +26,14 @@ global with sharing class QuoteToSalesAgreementAction {
         for (QuoteLineItem lineItem : [
             SELECT FIELDS(STANDARD)
             FROM QuoteLineItem
-            WHERE Id IN :quoteIds
+            WHERE QuoteId IN :quoteIds
             WITH SECURITY_ENFORCED
         ]) {
-            List<QuoteLineItem> lineItems = new List<QuoteLineItem>();
+            List<QuoteLineItem> lineItems = new List<QuoteLineItem>{ lineItem };
             if (quoteLinesByQuoteId.containsKey(lineItem.QuoteId)) {
                 lineItems.addAll(quoteLinesByQuoteId.get(lineItem.QuoteId));
             }
+            quoteLinesByQuoteId.put(lineItem.QuoteId, lineItems);
         }
         return quoteLinesByQuoteId;
     }

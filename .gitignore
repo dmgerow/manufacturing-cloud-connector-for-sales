@@ -65,3 +65,4 @@ force-app/main/default/objects/SalesAgreement/fields/TotalAgreementAmount.field-
 force-app/main/default/objects/SalesAgreement/fields/TotalProposedAgreementAmount.field-meta.xml
 force-app/main/default/objects/SalesAgreement/listViews/All_SalesAgreements.listView-meta.xml
 force-app/main/default/objects/SalesAgreement/listViews/My_SalesAgreements.listView-meta.xml
+force-app/main/default/profiles/Admin.profile-meta.xml
