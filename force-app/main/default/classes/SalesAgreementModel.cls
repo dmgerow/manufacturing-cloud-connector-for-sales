@@ -5,12 +5,4 @@ public with sharing class SalesAgreementModel {
     public salesAgreementModel() {
         this.salesAgreementProducts = new List<SalesAgreementProduct>();
     }
-
-    public void createSalesAgreement(SObject quote) {
-        this.salesAgreement = new SalesAgreement();
-        this.salesAgreement = (SalesAgreement) SobjectMappingService.mapFields(
-            quote,
-            this.salesAgreement
-        );
-    }
 }
