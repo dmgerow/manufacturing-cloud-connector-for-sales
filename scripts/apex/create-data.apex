@@ -1,24 +1,6 @@
 Account testAccount = new Account(Name = 'Universal Containers');
 insert testAccount;
 
-Opportunity testOpportunity = new Opportunity(
-  Name = 'Large Container',
-  StageName = 'Prospecting',
-  CloseDate = Date.today(),
-  AccountId = testAccount.Id
-);
-insert testOpportunity;
-
-Quote testQuote = new Quote(
-  Name = 'My Quote',
-  OpportunityId = testOpportunity.Id
-);
-insert testQuote;
-
-Product2 testProduct = new Product2(Name = 'Large Container', IsActive = true);
-insert testProduct;
-
-List<Product2> products = [SELECT Id FROM Product2];
 Pricebook2 priceBook = [
   SELECT Id, IsActive
   FROM Pricebook2
@@ -26,6 +8,27 @@ Pricebook2 priceBook = [
 ][0];
 priceBook.IsActive = true;
 update priceBook;
+
+Opportunity testOpportunity = new Opportunity(
+  Name = 'Large Container',
+  StageName = 'Prospecting',
+  CloseDate = Date.today(),
+  AccountId = testAccount.Id,
+  Pricebook2Id = priceBook.Id
+);
+insert testOpportunity;
+
+Quote testQuote = new Quote(
+  Name = 'My Quote',
+  OpportunityId = testOpportunity.Id,
+  Pricebook2Id = priceBook.Id
+);
+insert testQuote;
+
+Product2 testProduct = new Product2(Name = 'Large Container', IsActive = true);
+insert testProduct;
+
+List<Product2> products = [SELECT Id FROM Product2];
 List<PricebookEntry> newEntries = new List<PricebookEntry>();
 for (Product2 product : products) {
   PricebookEntry pbe = new PricebookEntry(
