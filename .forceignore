@@ -13,3 +13,7 @@ package.xml
 
 # Profiles
 **/force-app/main/default/profiles/**
+**.profile-meta.xml
+
+# Object files
+force-app/main/default/objects/SalesAgreement/listViews/**
