@@ -9,7 +9,7 @@ public with sharing class SalesAgreementService {
             agreementModel.createSalesAgreementProducts(
                 quoteLinesByQuoteId.get(salesAgreement.Quote__c)
             );
-            salesAgreementProducts.addAll(agreementModel.salesAgreementProducts);
+            salesAgreementProducts.addAll(agreementModel.salesAgreementProductsByPbe.values());
         }
         if (!Test.isRunningTest()) {
             insert salesAgreementProducts;
@@ -18,12 +18,13 @@ public with sharing class SalesAgreementService {
 
     public static Map<Id, List<QuoteLineItem>> getQuoteLinesByQuoteId(Set<Id> quoteIds) {
         Map<Id, List<QuoteLineItem>> quoteLinesByQuoteId = new Map<Id, List<QuoteLineItem>>();
-        for (QuoteLineItem lineItem : [
-            SELECT FIELDS(STANDARD)
-            FROM QuoteLineItem
-            WHERE QuoteId IN :quoteIds
-            WITH SECURITY_ENFORCED
-        ]) {
+        for (
+            QuoteLineItem lineItem : Database.query(
+                QueryUtilities.getFieldString(
+                    MappingUtilities.quoteLineToSalesAgreementProduct.keySet()
+                ) + ',QuoteId FROM QuoteLineItem WHERE QuoteId IN :quoteIds WITH SECURITY_ENFORCED'
+            )
+        ) {
             List<QuoteLineItem> lineItems = new List<QuoteLineItem>{ lineItem };
             if (quoteLinesByQuoteId.containsKey(lineItem.QuoteId)) {
                 lineItems.addAll(quoteLinesByQuoteId.get(lineItem.QuoteId));
