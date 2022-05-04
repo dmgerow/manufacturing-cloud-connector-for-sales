@@ -14,11 +14,8 @@ public with sharing class SalesAgreementModel {
         this.salesAgreementProducts = new List<SalesAgreementProduct>();
         for (QuoteLineItem quoteLine : quoteLineItems) {
             SalesAgreementProduct salesAgreementProduct = new SalesAgreementProduct();
-            salesAgreementProduct = (SalesAgreementProduct) SobjectMappingService.mapFields(
-                quoteLine,
-                salesAgreementProduct
-            );
             salesAgreementProduct.SalesAgreementId = salesAgreement.Id;
+            salesAgreementProduct.PriceBookEntry = quoteLine.PriceBookEntry;
             salesAgreementProduct.Name = 'product name';
             salesAgreementProduct.InitialPlannedQuantity = Integer.valueOf(quoteLine.Quantity);
             salesAgreementProduct.SalesPrice = quoteLine.UnitPrice;
