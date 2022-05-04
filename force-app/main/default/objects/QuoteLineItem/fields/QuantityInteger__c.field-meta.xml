@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QuantityInteger__c</fullName>
+    <description
+  >Round quantity to nearest whole number. Sales agreement product quantities must be rounded to the nearest whole number.</description>
+    <externalId>false</externalId>
+    <formula>ROUND(Quantity,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Round quantity to nearest whole number. Sales agreement product quantities must be rounded to the nearest whole number.</inlineHelpText>
+    <label>Quantity (Integer)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

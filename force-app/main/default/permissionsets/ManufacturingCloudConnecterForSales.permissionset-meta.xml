@@ -9,15 +9,21 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>SobjectMappingService</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>SobjectUtilities</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <description
   >Permission set grants access to apex classes used by the Manufacturing Cloud Connector for Sales</description>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>QuoteLineItem.ProductName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>QuoteLineItem.QuantityInteger__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>SalesAgreement.ContactId</field>
