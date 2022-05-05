@@ -35,18 +35,20 @@ public with sharing class SalesAgreementModel {
         QuoteLineItem quoteLine,
         SalesAgreementProduct salesAgreementProduct
     ) {
-        for (String sourceField : MappingUtilities.quoteLineToSalesAgreementProduct.keySet()) {
+        for (
+            String sourceField : MappingUtilities.qliToSapMapping.sourceToTargetMapping().keySet()
+        ) {
             if (
-                MappingUtilities.quoteLineToSalesAgreementProduct.get(sourceField) ==
+                MappingUtilities.qliToSapMapping.sourceToTargetMapping().get(sourceField) ==
                 'InitialPlannedQuantity'
             ) {
                 salesAgreementProduct.put(
-                    MappingUtilities.quoteLineToSalesAgreementProduct.get(sourceField),
+                    MappingUtilities.qliToSapMapping.sourceToTargetMapping().get(sourceField),
                     Integer.valueOf(quoteLine.get(sourceField))
                 );
             } else {
                 salesAgreementProduct.put(
-                    MappingUtilities.quoteLineToSalesAgreementProduct.get(sourceField),
+                    MappingUtilities.qliToSapMapping.sourceToTargetMapping().get(sourceField),
                     quoteLine.get(sourceField)
                 );
             }
@@ -57,7 +59,7 @@ public with sharing class SalesAgreementModel {
         SalesAgreementProduct newAgrementProduct,
         SalesAgreementProduct existingAgreementProduct
     ) {
-        for (String field : MappingUtilities.qliToSapFieldsToAvg) {
+        for (String field : MappingUtilities.qliToSapMapping.fieldsToWeightedAverageOnMerge()) {
             Decimal value =
                 ((Decimal) existingAgreementProduct.get(field) *
                 existingAgreementProduct.InitialPlannedQuantity +
@@ -67,7 +69,7 @@ public with sharing class SalesAgreementModel {
                 newAgrementProduct.InitialPlannedQuantity);
             existingAgreementProduct.put(field, value);
         }
-        for (String field : MappingUtilities.qliToSapFieldsToSum) {
+        for (String field : MappingUtilities.qliToSapMapping.fieldsToSumOnMerge()) {
             Decimal value =
                 (Decimal) existingAgreementProduct.get(field) +
                 (Decimal) newAgrementProduct.get(field);

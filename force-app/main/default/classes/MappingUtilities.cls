@@ -1,28 +1,13 @@
 public with sharing class MappingUtilities {
-    public static Map<String, String> quoteLineToSalesAgreementProduct {
+    public static FieldMappingConfiguration qliToSapMapping {
         get {
-            if (quoteLineToSalesAgreementProduct == null) {
-                quoteLineToSalesAgreementProduct = QuoteLineToSalesAgreementProductMapping.sourceToTargetMapping();
+            if (qliToSapMapping == null) {
+                qliToSapMapping = (FieldMappingConfiguration) Type.forName(
+                        'QuoteLineToSalesAgreementProductMapping'
+                    )
+                    .newInstance();
             }
-            return quoteLineToSalesAgreementProduct;
-        }
-        private set;
-    }
-    public static Set<String> qliToSapFieldsToSum {
-        get {
-            if (qliToSapFieldsToSum == null) {
-                qliToSapFieldsToSum = QuoteLineToSalesAgreementProductMapping.fieldsToSumOnMerge();
-            }
-            return qliToSapFieldsToSum;
-        }
-        private set;
-    }
-    public static Set<String> qliToSapFieldsToAvg {
-        get {
-            if (qliToSapFieldsToAvg == null) {
-                qliToSapFieldsToAvg = QuoteLineToSalesAgreementProductMapping.fieldsToWeightedAverageOnMerge();
-            }
-            return qliToSapFieldsToAvg;
+            return qliToSapMapping;
         }
         private set;
     }

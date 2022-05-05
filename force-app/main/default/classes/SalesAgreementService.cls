@@ -21,7 +21,7 @@ public with sharing class SalesAgreementService {
         for (
             QuoteLineItem lineItem : Database.query(
                 QueryUtilities.getFieldString(
-                    MappingUtilities.quoteLineToSalesAgreementProduct.keySet()
+                    MappingUtilities.qliToSapMapping.sourceToTargetMapping().keySet()
                 ) + ',QuoteId FROM QuoteLineItem WHERE QuoteId IN :quoteIds WITH SECURITY_ENFORCED'
             )
         ) {
