@@ -19,6 +19,10 @@ public with sharing class SalesAgreementModel {
             if (
                 this.salesAgreementProductsByPbe.containsKey(salesAgreementProduct.PriceBookEntryId)
             ) {
+                salesAgreementProduct = mergeAgreementProducts(
+                    salesAgreementProduct,
+                    this.salesAgreementProductsByPbe.get(salesAgreementProduct.PriceBookEntryId)
+                );
             }
             this.salesAgreementProductsByPbe.put(
                 salesAgreementProduct.PriceBookEntryId,
@@ -47,5 +51,32 @@ public with sharing class SalesAgreementModel {
                 );
             }
         }
+    }
+
+    public SalesAgreementProduct mergeAgreementProducts(
+        SalesAgreementProduct newAgrementProduct,
+        SalesAgreementProduct existingAgreementProduct
+    ) {
+        for (String field : MappingUtilities.qliToSapFieldsToAvg) {
+            Decimal value =
+                ((Decimal) existingAgreementProduct.get(field) *
+                existingAgreementProduct.InitialPlannedQuantity +
+                (Decimal) newAgrementProduct.get(field) *
+                newAgrementProduct.InitialPlannedQuantity) /
+                (existingAgreementProduct.InitialPlannedQuantity +
+                newAgrementProduct.InitialPlannedQuantity);
+            existingAgreementProduct.put(field, value);
+        }
+        for (String field : MappingUtilities.qliToSapFieldsToSum) {
+            Decimal value =
+                (Decimal) existingAgreementProduct.get(field) +
+                (Decimal) newAgrementProduct.get(field);
+            if (field == 'InitialPlannedQuantity') {
+                existingAgreementProduct.put(field, Integer.valueOf(value));
+            } else {
+                existingAgreementProduct.put(field, value);
+            }
+        }
+        return existingAgreementProduct;
     }
 }

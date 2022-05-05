@@ -5,6 +5,13 @@ global with sharing class QuoteToSalesAgreementAction {
         category='Manufacturing Cloud'
     )
     global static void createSalesAgreementProducts(List<SalesAgreement> salesAgreements) {
-        SalesAgreementService.createSalesAgreementProducts(salesAgreements);
+        try {
+            SalesAgreementService.createSalesAgreementProducts(salesAgreements);
+        } catch (Exception e) {
+            throw new QuoteToSalesAgreementActionException(e.getMessage());
+        }
+    }
+
+    public class QuoteToSalesAgreementActionException extends Exception {
     }
 }

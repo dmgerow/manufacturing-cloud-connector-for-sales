@@ -8,4 +8,22 @@ public with sharing class MappingUtilities {
         }
         private set;
     }
+    public static Set<String> qliToSapFieldsToSum {
+        get {
+            if (qliToSapFieldsToSum == null) {
+                qliToSapFieldsToSum = QuoteLineToSalesAgreementProductMapping.fieldsToSumOnMerge();
+            }
+            return qliToSapFieldsToSum;
+        }
+        private set;
+    }
+    public static Set<String> qliToSapFieldsToAvg {
+        get {
+            if (qliToSapFieldsToAvg == null) {
+                qliToSapFieldsToAvg = QuoteLineToSalesAgreementProductMapping.fieldsToWeightedAverageOnMerge();
+            }
+            return qliToSapFieldsToAvg;
+        }
+        private set;
+    }
 }

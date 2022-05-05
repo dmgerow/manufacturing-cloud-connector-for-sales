@@ -7,4 +7,10 @@ public with sharing class QuoteLineToSalesAgreementProductMapping implements Fie
             'UnitPrice' => 'SalesPrice'
         };
     }
+    public static Set<String> fieldsToSumOnMerge() {
+        return new Set<String>{ 'InitialPlannedQuantity' };
+    }
+    public static Set<String> fieldsToWeightedAverageOnMerge() {
+        return new Set<String>{ 'SalesPrice' };
+    }
 }
