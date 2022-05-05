@@ -28,6 +28,9 @@ insert testQuote;
 Product2 testProduct = new Product2(Name = 'Large Container', IsActive = true);
 insert testProduct;
 
+Product2 testProduct = new Product2(Name = 'Large Container2', IsActive = true);
+insert testProduct;
+
 List<Product2> products = [SELECT Id FROM Product2];
 List<PricebookEntry> newEntries = new List<PricebookEntry>();
 for (Product2 product : products) {
