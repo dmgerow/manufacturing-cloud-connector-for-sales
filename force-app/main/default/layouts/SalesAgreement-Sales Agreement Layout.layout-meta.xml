@@ -69,11 +69,21 @@
         <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
+    <relatedLists>
+        <fields>Name</fields>
+        <fields>SalesPrice</fields>
+        <fields>InitialPlannedQuantity</fields>
+        <fields>InitialPlannedAmount</fields>
+        <fields>DiscountPercentage</fields>
+        <fields>TotalPlannedQuantity</fields>
+        <fields>TotalActualQuantity</fields>
+        <relatedList>SalesAgreementProducts</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h11000007BXna</masterLabel>
+        <masterLabel>00h0t000004GHA9</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
