@@ -48,11 +48,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>QuoteLineItem.QuantityInteger__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>SalesAgreement.ContactId</field>
         <readable>true</readable>

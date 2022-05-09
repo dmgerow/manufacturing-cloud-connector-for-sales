@@ -3,7 +3,7 @@ public with sharing class QuoteLineToSalesAgreementProductMapping implements Fie
         return new Map<String, String>{
             'PriceBookEntryId' => 'PriceBookEntryId',
             'ProductName__c' => 'Name',
-            'QuantityInteger__c' => 'InitialPlannedQuantity',
+            'Quantity' => 'InitialPlannedQuantity',
             'UnitPrice' => 'SalesPrice'
         };
     }
