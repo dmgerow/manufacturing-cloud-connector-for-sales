@@ -1,3 +1,4 @@
+@SuppressWarnings('PMD.AvoidGlobalModifier')
 global with sharing class QuoteToSalesAgreementAction {
     @InvocableMethod(
         label='Create Sales Agreement Products from Quote'

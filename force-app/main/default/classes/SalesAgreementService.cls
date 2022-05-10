@@ -11,7 +11,11 @@ public with sharing class SalesAgreementService {
             );
             salesAgreementProducts.addAll(agreementModel.salesAgreementProductsByPbe.values());
         }
-        insert salesAgreementProducts;
+        SObjectAccessDecision securityDecision = Security.stripInaccessible(
+            AccessType.CREATABLE,
+            salesAgreementProducts
+        );
+        insert securityDecision.getRecords();
     }
 
     public static Map<Id, List<QuoteLineItem>> getQuoteLinesByQuoteId(Set<Id> quoteIds) {
