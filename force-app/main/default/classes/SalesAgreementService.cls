@@ -11,9 +11,7 @@ public with sharing class SalesAgreementService {
             );
             salesAgreementProducts.addAll(agreementModel.salesAgreementProductsByPbe.values());
         }
-        if (!Test.isRunningTest()) {
-            insert salesAgreementProducts;
-        }
+        insert salesAgreementProducts;
     }
 
     public static Map<Id, List<QuoteLineItem>> getQuoteLinesByQuoteId(Set<Id> quoteIds) {

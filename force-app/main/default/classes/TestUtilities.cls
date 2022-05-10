@@ -2,16 +2,121 @@
 public class TestUtilities {
     private static Integer recordNumber = 1;
 
-    @TestVisible
-    private static String generateTestId(Schema.SObjectType sObjectType) {
+    public static Account testAccount {
+        get {
+            if (testAccount == null) {
+                testAccount = new Account(Name = 'Test Account');
+                insert testAccount;
+            }
+            return testAccount;
+        }
+        private set;
+    }
+
+    public static Opportunity testOpportunity {
+        get {
+            if (testOpportunity == null) {
+                testOpportunity = new Opportunity(
+                    Name = 'Large Container',
+                    StageName = 'Prospecting',
+                    CloseDate = Date.today(),
+                    AccountId = testAccount.Id,
+                    Pricebook2Id = Test.getStandardPricebookId()
+                );
+                insert testOpportunity;
+            }
+            return testOpportunity;
+        }
+        private set;
+    }
+
+    public static Quote testQuote {
+        get {
+            if (testQuote == null) {
+                testQuote = new Quote(
+                    Name = 'My Quote',
+                    OpportunityId = testOpportunity.Id,
+                    Pricebook2Id = Test.getStandardPricebookId()
+                );
+                insert testQuote;
+            }
+            return testQuote;
+        }
+        private set;
+    }
+
+    public static SalesAgreement testSalesAgreement {
+        get {
+            if (testSalesAgreement == null) {
+                testSalesAgreement = new SalesAgreement(
+                    Name = 'Test',
+                    AccountId = testAccount.Id,
+                    Quote__c = testQuote.Id,
+                    StartDate = Date.today(),
+                    ScheduleFrequency = 'Monthly',
+                    ProductLevel = 'Product',
+                    ScheduleCount = 12,
+                    PricebookId = Test.getStandardPricebookId()
+                );
+                insert testSalesAgreement;
+            }
+            return testSalesAgreement;
+        }
+        private set;
+    }
+
+    public static Product2 testProduct {
+        get {
+            if (testProduct == null) {
+                testProduct = new Product2(Name = 'Large Container', IsActive = true);
+                insert testProduct;
+            }
+            return testProduct;
+        }
+        private set;
+    }
+
+    public static PricebookEntry testPbe {
+        get {
+            if (testPbe == null) {
+                testPbe = new PricebookEntry(
+                    Pricebook2Id = Test.getStandardPricebookId(),
+                    Product2Id = testProduct.Id,
+                    UnitPrice = 1000,
+                    IsActive = true,
+                    UseStandardPrice = false
+                );
+                insert testPbe;
+            }
+            return testPbe;
+        }
+        private set;
+    }
+
+    public static QuoteLineItem testQuoteLine {
+        get {
+            if (testQuoteLine == null) {
+                testQuoteLine = new QuoteLineItem(
+                    QuoteId = testQuote.Id,
+                    PricebookEntryId = testPbe.Id,
+                    UnitPrice = 1000,
+                    Quantity = 1
+                );
+                insert testQuoteLine;
+            }
+            return testQuoteLine;
+        }
+        private set;
+    }
+
+    public static String generateTestId(Schema.SObjectType sObjectType) {
         String recordNumber = String.valueOf(recordNumber++);
         return sObjectType.getDescribe().getKeyPrefix() +
             '0'.repeat(12 - recordNumber.length()) +
             recordNumber;
     }
 
-    @TestVisible
-    private static User testUser {
+    public static User testUser {
         get {
             if (testUser == null) {
                 Profile p = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
