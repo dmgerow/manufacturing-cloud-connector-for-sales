@@ -1,5 +1,10 @@
 # Manufacturing Cloud Connector for Sales
 
+This connector is used to facilitate the conversion of a Quote to a Sales Agreement. The functionality can be invoked in two ways
+
+- Invocable Apex Action (Flow)
+- From Apex (Code)
+
 ## Code Style and Formatting
 
 1. Install recommended extensions in `.vscode/extensions.json`
@@ -21,3 +26,7 @@
 3. Push source `sfdx force:source:push`
 4. Assign permission sets `sfdx force:user:permset:assign -n "ManufacturingSalesAgreementsPsl,ManufacturingCloudConnecterForSales"`
 5. Seed sample data `sfdx force:apex:execute -f scripts/apex/data-setup.apex`
+
+## Org Setup (After Develop Setup)
+
+1.
