@@ -1,18 +1,23 @@
-# Salesforce DX Project: Next Steps
+# Manufacturing Cloud Connector for Sales
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+## Code Style and Formatting
 
-## How Do You Plan to Deploy Your Changes?
+1. Install recommended extensions in `.vscode/extensions.json`
+2. Make sure below workspace settings exist in `.vscode/settings.json`
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+```json
+{
+  "editor.codeActionsOnSave": { "source.fixAll": true },
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "apexPMD.rulesets": ["pmd/pmd_rules.xml"]
+}
+```
 
-## Configure Your Salesforce DX Project
+## Developer Setup
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+1. Run `npm install` (only required after cloning project for the first time)
+2. Create scratch org
+3. Push source `sfdx force:source:push`
+4. Assign permission sets `sfdx force:user:permset:assign -n "ManufacturingSalesAgreementsPsl,ManufacturingCloudConnecterForSales"`
+5. Seed sample data `sfdx force:apex:execute -f scripts/apex/data-setup.apex`
