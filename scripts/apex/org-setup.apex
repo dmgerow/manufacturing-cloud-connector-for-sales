@@ -1,3 +1,26 @@
+List<PermissionSetAssignment> assignments = new List<PermissionSetAssignment>();
+for (PermissionSet ps : [
+  SELECT Id
+  FROM PermissionSet
+  WHERE
+    Name IN (
+      'ManufacturingSalesAgreementsPsl',
+      'ManufacturingCloudConnecterForSales'
+    )
+]) {
+  assignments.add(
+    new PermissionSetAssignment(
+      AssigneeId = testUser.Id,
+      PermissionSetId = ps.Id
+    )
+  );
+}
+try {
+  insert assignments;
+} catch (Exception e) {
+  e.getMessage();
+}
+
 Account testAccount = new Account(Name = 'Universal Containers');
 insert testAccount;
 
