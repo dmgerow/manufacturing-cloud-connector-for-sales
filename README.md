@@ -1,6 +1,7 @@
 # Manufacturing Cloud Connector for Sales
 
 [Additional documentation in Quip](https://salesforce.quip.com/67hZAQvgiwvM)
+[Github repository](https://github.com/dmgerow/manufacturing-cloud-connector-for-sales)
 
 This connector is used to facilitate the conversion of a Quote to a Sales Agreement. Its primary purpose is to convert Quote Lines to Sales Agreement Products on an already created Sales Agreement record. When invoked, it does the following:
 
