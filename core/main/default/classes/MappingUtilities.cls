@@ -6,10 +6,22 @@ public with sharing class MappingUtilities {
                 String className = packageSettings.QliToSapFieldMappingPlugin__c == null
                     ? 'QuoteLineToSalesAgreementProductMapping'
                     : packageSettings.QliToSapFieldMappingPlugin__c;
-                qliToSapMapping = (FieldMappingConfiguration) Type.forName(className).newInstance();
+                Type mappingConfig = Type.forName(className);
+                if (mappingConfig == null) {
+                    throw new MappingException(
+                        'The mapping plugin named \'' +
+                        className +
+                        '\' does not exist.'
+                    );
+                } else {
+                    qliToSapMapping = (FieldMappingConfiguration) mappingConfig.newInstance();
+                }
             }
             return qliToSapMapping;
         }
         private set;
+    }
+
+    public class MappingException extends Exception {
     }
 }

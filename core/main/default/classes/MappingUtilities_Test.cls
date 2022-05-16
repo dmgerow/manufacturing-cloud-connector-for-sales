@@ -12,4 +12,19 @@ private class MappingUtilities_Test {
             Test.stopTest();
         }
     }
+
+    @isTest
+    static void invalidQliToSapMapping() {
+        System.runAs(TestUtilities.testUser) {
+            insert new Settings__c(QliToSapFieldMappingPlugin__c = 'qwerty');
+            Test.startTest();
+            try {
+                FieldMappingConfiguration mapping = MappingUtilities.qliToSapMapping;
+                System.assert(false);
+            } catch (Exception e) {
+                System.assert(e.getMessage().contains('qwerty'));
+            }
+            Test.stopTest();
+        }
+    }
 }
