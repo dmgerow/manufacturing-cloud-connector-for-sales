@@ -10,3 +10,37 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+# Profiles
+**/force-app/main/default/profiles/**
+Admin.profile
+
+# Object files
+force-app/main/default/objects/SalesAgreement/listViews/**
+force-app/main/default/objects/SalesAgreement/SalesAgreement.object-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/AccountId.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/ActivatedDate.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/ActualsCalculationMode.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/AgreementType.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/ApprovedById.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/ApprovedDate.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/CancellationDate.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/CancellationReason.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/ContactId.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/Description.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/EndDate.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/Name.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/OwnerId.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/PricebookId.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/ProductLevel.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/RenewedFromAgreementId.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/RenewedToAgreementId.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/ScheduleCount.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/ScheduleFrequency.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/StartDate.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/Status.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/StatusCode.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/TotalAgreementAmount.field-meta.xml
+force-app/main/default/objects/SalesAgreement/fields/TotalProposedAgreementAmount.field-meta.xml
+force-app/main/default/objects/SalesAgreement/listViews/All_SalesAgreements.listView-meta.xml
+force-app/main/default/objects/SalesAgreement/listViews/My_SalesAgreements.listView-meta.xml
