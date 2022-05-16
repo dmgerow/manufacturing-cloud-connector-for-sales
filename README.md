@@ -10,6 +10,11 @@ This connector is used to facilitate the conversion of a Quote to a Sales Agreem
 3. If a Sales Agreement Product already exists for the Quote Line’s PriceBookEntryId, the records are merged. This is because a PriceBookEntry can only exist on a Sales Agreement once.
 4. The new Sales Agreement Products are inserted.
 
+## Roadmap
+
+- [ ] CPQ Support
+- [ ] Changing default product schedules
+
 ## Setup and Usage
 
 This code can be installed via managed package, or installed directly from source.
