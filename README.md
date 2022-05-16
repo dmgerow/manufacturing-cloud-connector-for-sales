@@ -1,6 +1,7 @@
 # Manufacturing Cloud Connector for Sales
 
 [Additional documentation in Quip](https://salesforce.quip.com/67hZAQvgiwvM)
+
 [Github repository](https://github.com/dmgerow/manufacturing-cloud-connector-for-sales)
 
 **Note: If you install the managed package, prepend the `MfgConnect` namespace to all fields and class names below**
