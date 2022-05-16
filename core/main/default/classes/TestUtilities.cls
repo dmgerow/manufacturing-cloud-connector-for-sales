@@ -1,7 +1,9 @@
 @isTest
+@namespaceAccessible
 public class TestUtilities {
     private static Integer recordNumber = 1;
 
+    @namespaceAccessible
     public static Account testAccount {
         get {
             if (testAccount == null) {
@@ -13,6 +15,7 @@ public class TestUtilities {
         private set;
     }
 
+    @namespaceAccessible
     public static Opportunity testOpportunity {
         get {
             if (testOpportunity == null) {
@@ -30,6 +33,7 @@ public class TestUtilities {
         private set;
     }
 
+    @namespaceAccessible
     public static Quote testQuote {
         get {
             if (testQuote == null) {
@@ -45,6 +49,7 @@ public class TestUtilities {
         private set;
     }
 
+    @namespaceAccessible
     public static SalesAgreement testSalesAgreement {
         get {
             if (testSalesAgreement == null) {
@@ -65,6 +70,7 @@ public class TestUtilities {
         private set;
     }
 
+    @namespaceAccessible
     public static Product2 testProduct {
         get {
             if (testProduct == null) {
@@ -76,6 +82,7 @@ public class TestUtilities {
         private set;
     }
 
+    @namespaceAccessible
     public static PricebookEntry testPbe {
         get {
             if (testPbe == null) {
@@ -93,6 +100,7 @@ public class TestUtilities {
         private set;
     }
 
+    @namespaceAccessible
     public static QuoteLineItem testQuoteLine {
         get {
             if (testQuoteLine == null) {
@@ -109,6 +117,7 @@ public class TestUtilities {
         private set;
     }
 
+    @namespaceAccessible
     public static String generateTestId(Schema.SObjectType sObjectType) {
         String recordNumber = String.valueOf(recordNumber++);
         return sObjectType.getDescribe().getKeyPrefix() +
@@ -116,6 +125,7 @@ public class TestUtilities {
             recordNumber;
     }
 
+    @namespaceAccessible
     public static User testUser {
         get {
             if (testUser == null) {
