@@ -6,7 +6,7 @@
     }
   ],
   "name": "manufacturing-cloud-connector-for-sales",
-  "namespace": "",
+  "namespace": "MfgConnect",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "54.0"
 }
