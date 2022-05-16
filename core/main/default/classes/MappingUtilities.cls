@@ -1,4 +1,6 @@
 public with sharing class MappingUtilities {
+    // Gets Quote Line to Sales Agreement Product Mappings. If plugin is not defined as a custom
+    // setting then the default mappings are used.
     public static FieldMappingConfiguration qliToSapMapping {
         get {
             if (qliToSapMapping == null) {

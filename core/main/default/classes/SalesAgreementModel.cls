@@ -7,6 +7,7 @@ public with sharing class SalesAgreementModel {
         this.salesAgreementProductsByPbe = new Map<Id, SalesAgreementProduct>();
     }
 
+    // creates sales agreement products from quote lines
     public void createSalesAgreementProducts(List<QuoteLineItem> quoteLineItems) {
         if (quoteLineItems == null) {
             return;
@@ -16,6 +17,7 @@ public with sharing class SalesAgreementModel {
             SalesAgreementProduct salesAgreementProduct = new SalesAgreementProduct();
             salesAgreementProduct.SalesAgreementId = salesAgreement.Id;
             mapFieldsFromQuoteLine(quoteLine, salesAgreementProduct);
+            // a price book entry can only exist on a sales agreements once
             if (
                 this.salesAgreementProductsByPbe.containsKey(salesAgreementProduct.PriceBookEntryId)
             ) {
@@ -42,6 +44,7 @@ public with sharing class SalesAgreementModel {
                 MappingUtilities.qliToSapMapping.sourceToTargetMapping().get(sourceField) ==
                 'InitialPlannedQuantity'
             ) {
+                // InitialPlannedQuantity is an integer
                 salesAgreementProduct.put(
                     MappingUtilities.qliToSapMapping.sourceToTargetMapping().get(sourceField),
                     Integer.valueOf(quoteLine.get(sourceField))
@@ -74,6 +77,7 @@ public with sharing class SalesAgreementModel {
                 (Decimal) existingAgreementProduct.get(field) +
                 (Decimal) newAgrementProduct.get(field);
             if (field == 'InitialPlannedQuantity') {
+                // InitialPlannedQuantity is an integer
                 existingAgreementProduct.put(field, Integer.valueOf(value));
             } else {
                 existingAgreementProduct.put(field, value);

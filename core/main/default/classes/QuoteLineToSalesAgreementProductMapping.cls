@@ -1,3 +1,4 @@
+// Default mapping plugin for Quote Line to Sales Agreement Product
 public with sharing class QuoteLineToSalesAgreementProductMapping implements FieldMappingConfiguration {
     public static Map<String, String> sourceToTargetMapping() {
         return new Map<String, String>{
