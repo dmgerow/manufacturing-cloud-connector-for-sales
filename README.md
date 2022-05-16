@@ -17,7 +17,10 @@ This connector is used to facilitate the conversion of a Quote to a Sales Agreem
 
 ## Setup and Usage
 
-This code can be installed via managed package, or installed directly from source.
+This code can be installed via managed package, or installed directly from source. In order to install this, your org must have:
+
+- [Quotes enabled](https://help.salesforce.com/s/articleView?id=sf.quotes_enable.htm&type=5)
+- [Sales Agreements enabled](https://help.salesforce.com/s/articleView?id=sf.sa_admin_enable_task.htm&type=5)
 
 The functionality can be invoked in two ways
 
