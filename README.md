@@ -1,5 +1,7 @@
 # Manufacturing Cloud Connector for Sales
 
+[AppExchange Listing](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000II6Y1UAL)
+
 [Additional documentation in Quip](https://salesforce.quip.com/67hZAQvgiwvM)
 
 [Github repository](https://github.com/dmgerow/manufacturing-cloud-connector-for-sales)
