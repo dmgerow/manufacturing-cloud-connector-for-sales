@@ -8,10 +8,13 @@
 
 **Note: If you install the managed package, prepend the `MfgConnect` namespace to all fields and class names below**
 
-This connector is used to facilitate the conversion of a Quote to a Sales Agreement. Its primary purpose is to convert Quote Lines to Sales Agreement Products on an already created Sales Agreement record. When invoked, it does the following:
+This connector is used to facilitate the conversion of a Quote to a Sales Agreement. Its primary purpose is to convert Quote Lines to Sales Agreement Products on already created Sales Agreement records. When invoked, it does the following:
 
 1. Queries all quote lines related to the Quote ID in the `Quote__c` field on the provided Sales Agreements
 2. For each quote line, a new Sales Agreement Product is created using either the default mappings, or the custom mapping plugin noted in `QuoteLineToSalesAgreementProductMapping__c` setting in the package settings
+   1. If the `Match QLI Account to SA Account` setting is enabled, only quote lines with the same Account ID (`AccountId__c`) as the Sales Agreement (`AccountId`) will be added to the Sales Agreement. This helps you facilitate the conversion of one quote to multiple Sales Agreements (e.g. one quote has multiple ship to addresses that need different sales agreements). Note that to use this you will still need to
+      1. Make the Sales Agreements
+      2. Make sure that the `AccountId__c` on the quote line is populated
 3. If a Sales Agreement Product already exists for the Quote Line’s PriceBookEntryId, the records are merged. This is because a PriceBookEntry can only exist on a Sales Agreement once.
 4. The new Sales Agreement Products are inserted.
 
@@ -93,6 +96,25 @@ public with sharing class QuoteLineToSalesAgreementProductMapping implements Fie
 ```
 
 After creating a mapping plugin, you can copy the name of the Apex Class to the appropriate setting in the settings page.
+
+Here is an example test class for your plugin:
+
+```java
+@isTest
+private class MappingPluginClass_Test {
+    @isTest
+    static void mappingPlugin() {
+        try {
+            Map<String, String> sourceToTargetMapping = MappingPluginClass.sourceToTargetMapping();
+            Set<String> fieldsToSumOnMerge = MappingPluginClass.fieldsToSumOnMerge();
+            Set<String> fieldsToWeightedAverageOnMerge = MappingPluginClass.fieldsToWeightedAverageOnMerge();
+            System.assert(true);
+        } catch (Exception e) {
+            System.assert(false);
+        }
+    }
+}
+```
 
 ## Code Style and Formatting
 
