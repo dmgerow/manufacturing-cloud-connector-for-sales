@@ -44,6 +44,11 @@
   >Permission set grants access to apex classes used by the Manufacturing Cloud Connector for Sales</description>
     <fieldPermissions>
         <editable>false</editable>
+        <field>QuoteLineItem.AccountId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>QuoteLineItem.ProductName__c</field>
         <readable>true</readable>
     </fieldPermissions>
