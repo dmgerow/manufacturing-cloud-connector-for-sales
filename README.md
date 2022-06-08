@@ -11,10 +11,11 @@
 This connector is used to facilitate the conversion of a Quote to a Sales Agreement. Its primary purpose is to convert Quote Lines to Sales Agreement Products on already created Sales Agreement records. When invoked, it does the following:
 
 1. Queries all quote lines related to the Quote ID in the `Quote__c` field on the provided Sales Agreements
-2. For each quote line, a new Sales Agreement Product is created using either the default mappings, or the custom mapping plugin noted in `QuoteLineToSalesAgreementProductMapping__c` setting in the package settings
+2. For each quote line, a new Sales Agreement Product is created using either the mappings you provide in custom metadata, or a custom mapping plugin noted in the `QuoteLineToSalesAgreementProductMapping__c` setting in the package settings
    1. If the `Match QLI Account to SA Account` setting is enabled, only quote lines with the same Account ID (`AccountId__c`) as the Sales Agreement (`AccountId`) will be added to the Sales Agreement. This helps you facilitate the conversion of one quote to multiple Sales Agreements (e.g. one quote has multiple ship to addresses that need different sales agreements). Note that to use this you will still need to
       1. Make the Sales Agreements
       2. Make sure that the `AccountId__c` on the quote line is populated
+   2. The package comes with default mappings. Make additional field mappings as needed. Note that the custom metadata mappings are ignored if you use an Apex Mapping Plugin
 3. If a Sales Agreement Product already exists for the Quote Line’s PriceBookEntryId, the records are merged. This is because a PriceBookEntry can only exist on a Sales Agreement once.
 4. The new Sales Agreement Products are inserted.
 
@@ -65,6 +66,10 @@ trigger SalesAgreementTrigger on SalesAgreement(after insert) {
     }
 }
 ```
+
+### Custom Metadata Mapping
+
+The package comes with default mappings that are stored in custom metadata. These mappings can be created and/or modified to meet your requirements.
 
 ### Mapping Plugins
 
