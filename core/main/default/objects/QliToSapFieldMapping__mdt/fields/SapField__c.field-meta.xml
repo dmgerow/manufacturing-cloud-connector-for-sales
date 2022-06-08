@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SapField__c</fullName>
+    <description>Target Sales Agreement Product field.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText
+  >Target Sales Agreement Product field. Will be mapped from the Quote Line.</inlineHelpText>
+    <label>Sales Agreement Product Field (target)</label>
+    <length>255</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

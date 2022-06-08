@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WeightedAverageOnMerge__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >When the Sales Agreement Product is merged, should the weighted average be calculated (must be a number data type)? The quantity is used to calculate the weighted average.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText
+  >When the Sales Agreement Product is merged, should the weighted average be calculated (must be a number data type)? The quantity is used to calculate the weighted average.</inlineHelpText>
+    <label>Weighted Average of Field on Merge</label>
+    <type>Checkbox</type>
+</CustomField>
