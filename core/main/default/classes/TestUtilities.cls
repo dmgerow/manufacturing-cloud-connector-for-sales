@@ -108,7 +108,8 @@ public class TestUtilities {
                     QuoteId = testQuote.Id,
                     PricebookEntryId = testPbe.Id,
                     UnitPrice = 1000,
-                    Quantity = 1
+                    Quantity = 1,
+                    AccountId__c = testAccount.Id
                 );
                 insert testQuoteLine;
             }

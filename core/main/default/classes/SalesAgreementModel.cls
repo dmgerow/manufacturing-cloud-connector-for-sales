@@ -14,6 +14,12 @@ public with sharing class SalesAgreementModel {
         }
         this.salesAgreementProductsByPbe = new Map<Id, SalesAgreementProduct>();
         for (QuoteLineItem quoteLine : quoteLineItems) {
+            if (
+                SettingsUtilities.packageSettings.MatchQliAccountToSaAccount__c &&
+                quoteLine.AccountId__c != salesAgreement.AccountId
+            ) {
+                continue;
+            }
             SalesAgreementProduct salesAgreementProduct = new SalesAgreementProduct();
             salesAgreementProduct.SalesAgreementId = salesAgreement.Id;
             mapFieldsFromQuoteLine(quoteLine, salesAgreementProduct);
