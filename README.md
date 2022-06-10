@@ -33,6 +33,11 @@ This code can be installed via managed package, or installed directly from sourc
 - [Quotes enabled](https://help.salesforce.com/s/articleView?id=sf.quotes_enable.htm&type=5)
 - [Sales Agreements enabled](https://help.salesforce.com/s/articleView?id=sf.sa_admin_enable_task.htm&type=5)
 
+In order to use this package, the running user needs the following two permission sets assigned
+
+- Manufacturing Sales Agreements (part of Manufacturing Cloud)
+- Manufacturing Cloud Connecter for Sales (part of this package)
+
 The functionality can be invoked in two ways
 
 - Invocable Apex Action (Flow)
