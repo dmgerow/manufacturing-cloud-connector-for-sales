@@ -57,7 +57,7 @@ In the event of an error within the action, an exception will be thrown. This sh
 
 An example of adding this to a trigger can be seen below:
 
-```java
+```
 trigger SalesAgreementTrigger on SalesAgreement(after insert) {
     switch on Trigger.operationType {
         when AFTER_INSERT {
@@ -81,7 +81,7 @@ You can create a custom mapping plugin that allows you to:
 
 An example of a mapping plugin can be seen below. Note this contains the default mappings:
 
-```java
+```
 public with sharing class QuoteLineToSalesAgreementProductMapping implements FieldMappingConfiguration {
     public static Map<String, String> sourceToTargetMapping() {
         return new Map<String, String>{
@@ -104,7 +104,7 @@ After creating a mapping plugin, you can copy the name of the Apex Class to the 
 
 Here is an example test class for your plugin:
 
-```java
+```
 @isTest
 private class MappingPluginClass_Test {
     @isTest
@@ -126,9 +126,9 @@ private class MappingPluginClass_Test {
 1. Install recommended extensions in `.vscode/extensions.json`
 2. Make sure below workspace settings exist in `.vscode/settings.json`
 
-```json
+```
 {
-  "editor.codeActionsOnSave": { "source.fixAll": true },
+  "editor.codeActionsOnSave": {"source.fixAll": true},
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "apexPMD.rulesets": ["pmd/pmd_rules.xml"]

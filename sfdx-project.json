@@ -4,11 +4,11 @@
       "path": "core",
       "default": true,
       "package": "Manufacturing Cloud Connector for Sales",
-      "versionName": "1.0.0",
-      "versionNumber": "1.0.0.NEXT",
+      "versionName": "1.1.0",
+      "versionNumber": "1.1.0.NEXT",
+      "ancestorVersion": "HIGHEST",
       "releaseNotesUrl": "https://github.com/dmgerow/manufacturing-cloud-connector-for-sales/blob/main/README.md",
-      "definitionFile": "config/project-scratch-def.json",
-      "postInstallUrl": "https://github.com/dmgerow/manufacturing-cloud-connector-for-sales/blob/main/README.md#setup-and-usage"
+      "definitionFile": "config/project-scratch-def.json"
     }
   ],
   "name": "manufacturing-cloud-connector-for-sales",
@@ -17,6 +17,7 @@
   "sourceApiVersion": "54.0",
   "packageAliases": {
     "Manufacturing Cloud Connector for Sales": "0Ho8b0000008OJICA2",
-    "Manufacturing Cloud Connector for Sales@1.0.0-1": "04t8b000000gv7qAAA"
+    "Manufacturing Cloud Connector for Sales@1.0.0-1": "04t8b000000gv7qAAA",
+    "Manufacturing Cloud Connector for Sales@1.1.0-1": "04t8b000001RvcYAAS"
   }
 }
