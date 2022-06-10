@@ -1,3 +1,7 @@
 QuoteToSalesAgreementService.createSalesAgreementProducts(
-  [SELECT Quote__c FROM SalesAgreement WHERE Id = '0YA630000008Ov7GAE']
+  [
+    SELECT AccountId, Quote__c
+    FROM SalesAgreement
+    WHERE Id IN ('0YA1g0000004CAVGA2', '0YA1g0000004CAaGAM')
+  ]
 );

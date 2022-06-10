@@ -8,11 +8,15 @@
 
 **Note: If you install the managed package, prepend the `MfgConnect` namespace to all fields and class names below**
 
-This connector is used to facilitate the conversion of a Quote to a Sales Agreement. Its primary purpose is to convert Quote Lines to Sales Agreement Products on an already created Sales Agreement record. When invoked, it does the following:
+This connector is used to facilitate the conversion of a Quote to a Sales Agreement. Its primary purpose is to convert Quote Lines to Sales Agreement Products on already created Sales Agreement records. When invoked, it does the following:
 
 1. Queries all quote lines related to the Quote ID in the `Quote__c` field on the provided Sales Agreements
-2. For each quote line, a new Sales Agreement Product is created using either the default mappings, or the custom mapping plugin noted in `QuoteLineToSalesAgreementProductMapping__c` setting in the package settings
-3. If a Sales Agreement Product already exists for the Quote Line’s PriceBookEntryId, the records are merged. This is because a PriceBookEntry can only exist on a Sales Agreement once.
+2. For each quote line, a new Sales Agreement Product is created using either the mappings you provide in custom metadata, or a custom mapping plugin noted in the `QuoteLineToSalesAgreementProductMapping__c` setting in the package settings
+   1. If the `Match QLI Account to SA Account` setting is enabled, only quote lines with the same Account ID (`AccountId__c`) as the Sales Agreement (`AccountId`) will be added to the Sales Agreement. This helps you facilitate the conversion of one quote to multiple Sales Agreements (e.g. one quote has multiple ship to addresses that need different sales agreements). Note that to use this you will still need to
+      1. Make the Sales Agreements
+      2. Make sure that the `AccountId__c` on the quote line is populated
+   2. The package comes with default mappings that represent the minimum required fields to make a Sales Agreement Product in Manufacturing Cloud. You can update the default mappings and make additional mapping records are needed. Note that the custom metadata mappings are ignored if you use an Apex Mapping Plugin
+3. If a Sales Agreement Product already exists for the Quote Line’s PriceBookEntryId, the records are merged. This is because a PriceBookEntry can only exist once per Sales Agreement.
 4. The new Sales Agreement Products are inserted.
 
 ## Roadmap
@@ -53,7 +57,7 @@ In the event of an error within the action, an exception will be thrown. This sh
 
 An example of adding this to a trigger can be seen below:
 
-```java
+```
 trigger SalesAgreementTrigger on SalesAgreement(after insert) {
     switch on Trigger.operationType {
         when AFTER_INSERT {
@@ -62,6 +66,10 @@ trigger SalesAgreementTrigger on SalesAgreement(after insert) {
     }
 }
 ```
+
+### Custom Metadata Mapping
+
+The package comes with default mappings that are stored in custom metadata. These mappings can be created and/or modified to meet your requirements.
 
 ### Mapping Plugins
 
@@ -73,7 +81,7 @@ You can create a custom mapping plugin that allows you to:
 
 An example of a mapping plugin can be seen below. Note this contains the default mappings:
 
-```java
+```
 public with sharing class QuoteLineToSalesAgreementProductMapping implements FieldMappingConfiguration {
     public static Map<String, String> sourceToTargetMapping() {
         return new Map<String, String>{
@@ -94,14 +102,33 @@ public with sharing class QuoteLineToSalesAgreementProductMapping implements Fie
 
 After creating a mapping plugin, you can copy the name of the Apex Class to the appropriate setting in the settings page.
 
+Here is an example test class for your plugin:
+
+```
+@isTest
+private class MappingPluginClass_Test {
+    @isTest
+    static void mappingPlugin() {
+        try {
+            Map<String, String> sourceToTargetMapping = MappingPluginClass.sourceToTargetMapping();
+            Set<String> fieldsToSumOnMerge = MappingPluginClass.fieldsToSumOnMerge();
+            Set<String> fieldsToWeightedAverageOnMerge = MappingPluginClass.fieldsToWeightedAverageOnMerge();
+            System.assert(true);
+        } catch (Exception e) {
+            System.assert(false);
+        }
+    }
+}
+```
+
 ## Code Style and Formatting
 
 1. Install recommended extensions in `.vscode/extensions.json`
 2. Make sure below workspace settings exist in `.vscode/settings.json`
 
-```json
+```
 {
-  "editor.codeActionsOnSave": { "source.fixAll": true },
+  "editor.codeActionsOnSave": {"source.fixAll": true},
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "apexPMD.rulesets": ["pmd/pmd_rules.xml"]
@@ -120,7 +147,7 @@ After creating a mapping plugin, you can copy the name of the Apex Class to the 
 6. Add products to your newly created quote
 7. Perform development/testing as needed
 
-There is no page layout metadata in this project. You will need to manually add the custom fields to your layouts.
+There is no SObject (e.g. Sales Agreement) page layout metadata in this project. You will need to manually add the custom fields from this package to your layouts if you would like them to be visible.
 
 ## Terms & Conditions
 

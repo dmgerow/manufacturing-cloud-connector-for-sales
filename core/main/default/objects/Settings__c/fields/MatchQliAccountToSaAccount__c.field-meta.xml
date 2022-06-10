@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MatchQliAccountToSaAccount__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Only add Sales Agreement Products to Sales Agreements when the Quote Line&apos;s Account ID matches the Sales Agreement&apos;s Account ID (AccountId__c).</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Only add Sales Agreement Products to Sales Agreements when the Quote Line&apos;s Account ID matches the Sales Agreement&apos;s Account ID.</inlineHelpText>
+    <label>Match QLI Account to SA Account</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,17 +1,40 @@
 // Default mapping plugin for Quote Line to Sales Agreement Product
 public with sharing class QuoteLineToSalesAgreementProductMapping implements FieldMappingConfiguration {
+    private static Map<String, String> cachedSourceToTargetMapping;
+    private static Set<String> cachedFieldsToSumOnMerge;
+    private static Set<String> cachedFieldsToWeightedAverageOnMerge;
+
     public static Map<String, String> sourceToTargetMapping() {
-        return new Map<String, String>{
-            'PriceBookEntryId' => 'PriceBookEntryId',
-            'ProductName__c' => 'Name',
-            'Quantity' => 'InitialPlannedQuantity',
-            'UnitPrice' => 'SalesPrice'
-        };
+        if (cachedSourceToTargetMapping == null) {
+            getCustomMetadataValues();
+        }
+        return cachedSourceToTargetMapping;
     }
     public static Set<String> fieldsToSumOnMerge() {
-        return new Set<String>{ 'InitialPlannedQuantity' };
+        if (cachedFieldsToSumOnMerge == null) {
+            getCustomMetadataValues();
+        }
+        return cachedFieldsToSumOnMerge;
     }
     public static Set<String> fieldsToWeightedAverageOnMerge() {
-        return new Set<String>{ 'SalesPrice' };
+        if (cachedFieldsToWeightedAverageOnMerge == null) {
+            getCustomMetadataValues();
+        }
+        return cachedFieldsToWeightedAverageOnMerge;
+    }
+
+    private static void getCustomMetadataValues() {
+        cachedSourceToTargetMapping = new Map<String, String>();
+        cachedFieldsToSumOnMerge = new Set<String>();
+        cachedFieldsToWeightedAverageOnMerge = new Set<String>();
+        for (QliToSapFieldMapping__mdt mapping : QliToSapFieldMapping__mdt.getAll().values()) {
+            cachedSourceToTargetMapping.put(mapping.QliField__c, mapping.SapField__c);
+            if (mapping.SumOnMerge__c) {
+                cachedFieldsToSumOnMerge.add(mapping.SapField__c);
+            }
+            if (mapping.WeightedAverageOnMerge__c) {
+                cachedFieldsToWeightedAverageOnMerge.add(mapping.SapField__c);
+            }
+        }
     }
 }
