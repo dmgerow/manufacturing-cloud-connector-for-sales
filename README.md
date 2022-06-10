@@ -16,7 +16,7 @@ This connector is used to facilitate the conversion of a Quote to a Sales Agreem
       1. Make the Sales Agreements
       2. Make sure that the `AccountId__c` on the quote line is populated
    2. The package comes with default mappings. Make additional field mappings as needed. Note that the custom metadata mappings are ignored if you use an Apex Mapping Plugin
-3. If a Sales Agreement Product already exists for the Quote Line’s PriceBookEntryId, the records are merged. This is because a PriceBookEntry can only exist on a Sales Agreement once.
+3. If a Sales Agreement Product already exists for the Quote Line’s PriceBookEntryId, the records are merged. This is because a PriceBookEntry can only exist once per Sales Agreement.
 4. The new Sales Agreement Products are inserted.
 
 ## Roadmap
@@ -147,7 +147,7 @@ private class MappingPluginClass_Test {
 6. Add products to your newly created quote
 7. Perform development/testing as needed
 
-There is no page layout metadata in this project. You will need to manually add the custom fields to your layouts.
+There is no SObject (e.g. Sales Agreement) page layout metadata in this project. You will need to manually add the custom fields from this package to your layouts if you would like them to be visible.
 
 ## Terms & Conditions
 
