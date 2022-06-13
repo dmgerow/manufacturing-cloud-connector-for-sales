@@ -6,9 +6,13 @@
 
 [Github repository](https://github.com/dmgerow/manufacturing-cloud-connector-for-sales)
 
-**Note: If you install the managed package, prepend the `MfgConnect` namespace to all fields and class names below**
+**Important notes:**
 
-This connector is used to facilitate the conversion of a Quote to a Sales Agreement. Its primary purpose is to convert Quote Lines to Sales Agreement Products on already created Sales Agreement records. When invoked, it does the following:
+- You will need to create your Sales Agreement and populate the Quote\_\_c field before invoking this package logic. This preserves the ability to continue to use your method of choice for Sales Agreement header creation.
+- This needs to be added to a flow or a trigger to work. There is no automation included in this package.
+- If you install the managed package, prepend the `MfgConnect` namespace to all fields and class names below
+
+This connector is used to facilitate the conversion of a Quote to one or many Sales Agreements. Its primary purpose is to convert Quote Lines to Sales Agreement Products on already created Sales Agreement records. When invoked, it does the following:
 
 1. Queries all quote lines related to the Quote ID in the `Quote__c` field on the provided Sales Agreements
 2. For each quote line, a new Sales Agreement Product is created using either the mappings you provide in custom metadata, or a custom mapping plugin noted in the `QuoteLineToSalesAgreementProductMapping__c` setting in the package settings
