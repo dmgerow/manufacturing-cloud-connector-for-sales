@@ -1,7 +1,7 @@
 {
   "orgName": "dgerow company",
   "edition": "Developer",
-  "features": ["IndustriesMfgTargets"],
+  "features": ["IndustriesMfgTargets", "CPQ"],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
