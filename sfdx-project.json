@@ -8,7 +8,7 @@
       "versionNumber": "1.1.0.NEXT",
       "ancestorVersion": "HIGHEST",
       "releaseNotesUrl": "https://github.com/dmgerow/manufacturing-cloud-connector-for-sales/blob/main/README.md",
-      "definitionFile": "config/project-scratch-def.json"
+      "definitionFile": "config/core-scratch-def.json"
     }
   ],
   "name": "manufacturing-cloud-connector-for-sales",
