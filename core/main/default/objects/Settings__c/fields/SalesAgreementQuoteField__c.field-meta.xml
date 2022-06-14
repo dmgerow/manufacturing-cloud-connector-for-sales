@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SalesAgreementQuoteField__c</fullName>
+    <defaultValue>&quot;Quote__c&quot;</defaultValue>
+    <description
+  >The API Name of the field on the Sales Agreement that references the Quote used to create this Sales Agreement. Must be a reference to a Standard or CPQ Quote. Default field is Quote__c.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >The API Name of the field on the Sales Agreement that references the Quote used to create this Sales Agreement. Must be a reference to a Standard or CPQ Quote. Default field is Quote__c.</inlineHelpText>
+    <label>Sales Agreement Quote Field</label>
+    <length>255</length>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

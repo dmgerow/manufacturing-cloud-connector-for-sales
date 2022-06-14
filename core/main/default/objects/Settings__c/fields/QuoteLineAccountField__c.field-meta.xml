@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QuoteLineAccountField__c</fullName>
+    <defaultValue>&quot;AccountId__c&quot;</defaultValue>
+    <description
+  >The API name of the field on either the Quote Line (CPQ) or Quote Line Item (Standard) objects that references the Account. Used with the Match QLI Account to SA Account setting to convert quote lines to Sales Agreements with a matching Account. Default values is AccountId__c.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >The API name of the field on either the Quote Line (CPQ) or Quote Line Item (Standard) objects that references the Account. Used with the Match QLI Account to SA Account setting to convert quote lines to Sales Agreements with a matching Account. Default values is AccountId__c.</inlineHelpText>
+    <label>Quote Line Account Field</label>
+    <length>255</length>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
