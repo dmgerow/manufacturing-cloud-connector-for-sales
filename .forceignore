@@ -56,3 +56,4 @@ core/main/default/objects/QuoteLineItem/fields/Subtotal.field-meta.xml
 core/main/default/objects/QuoteLineItem/fields/TotalPrice.field-meta.xml
 core/main/default/objects/QuoteLineItem/QuoteLineItem.object-meta.xml
 core/main/default/objects/QuoteLineItem/fields/Description.field-meta.xml
+core/main/default/featureParameters
