@@ -4,8 +4,10 @@ public with sharing class SalesAgreementUtilities {
     public static Set<Id> getQuoteIds(List<SalesAgreement> salesAgreements) {
         Set<Id> quoteIds = new Set<Id>();
         for (SalesAgreement salesAgreement : salesAgreements) {
-            if (salesAgreement.Quote__c != null) {
-                quoteIds.add(salesAgreement.Quote__c);
+            if (salesAgreement.get(SettingsUtilities.getSalesAgreementQuoteField()) != null) {
+                quoteIds.add(
+                    (Id) salesAgreement.get(SettingsUtilities.getSalesAgreementQuoteField())
+                );
             }
         }
         return quoteIds;

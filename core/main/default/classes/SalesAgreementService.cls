@@ -7,7 +7,9 @@ public with sharing class SalesAgreementService {
         for (SalesAgreement salesAgreement : salesAgreements) {
             SalesAgreementModel agreementModel = new SalesAgreementModel(salesAgreement);
             agreementModel.createSalesAgreementProducts(
-                quoteLinesByQuoteId.get(salesAgreement.Quote__c)
+                quoteLinesByQuoteId.get(
+                    (Id) salesAgreement.get(SettingsUtilities.getSalesAgreementQuoteField())
+                )
             );
             salesAgreementProducts.addAll(agreementModel.salesAgreementProductsByPbe.values());
         }
@@ -18,20 +20,36 @@ public with sharing class SalesAgreementService {
         insert securityDecision.getRecords();
     }
 
-    public static Map<Id, List<QuoteLineItem>> getQuoteLinesByQuoteId(Set<Id> quoteIds) {
-        Map<Id, List<QuoteLineItem>> quoteLinesByQuoteId = new Map<Id, List<QuoteLineItem>>();
+    public static Map<Id, List<SObject>> getQuoteLinesByQuoteId(Set<Id> quoteIds) {
+        Map<Id, List<SObject>> quoteLinesByQuoteId = new Map<Id, List<SObject>>();
         for (
-            QuoteLineItem lineItem : Database.query(
+            SObject lineItem : Database.query(
                 QueryUtilities.getFieldString(
                     MappingUtilities.qliToSapMapping.sourceToTargetMapping().keySet()
-                ) + ' FROM QuoteLineItem WHERE QuoteId IN :quoteIds WITH SECURITY_ENFORCED'
+                ) +
+                ' FROM ' +
+                MappingUtilities.getQuoteLineObjectApiName() +
+                ' WHERE ' +
+                MappingUtilities.getQuoteLineQuoteApiName() +
+                ' IN :quoteIds WITH SECURITY_ENFORCED'
             )
         ) {
-            List<QuoteLineItem> lineItems = new List<QuoteLineItem>{ lineItem };
-            if (quoteLinesByQuoteId.containsKey(lineItem.QuoteId)) {
-                lineItems.addAll(quoteLinesByQuoteId.get(lineItem.QuoteId));
+            List<Sobject> lineItems = new List<Sobject>{ lineItem };
+            if (
+                quoteLinesByQuoteId.containsKey(
+                    (Id) lineItem.get(MappingUtilities.getQuoteLineQuoteApiName())
+                )
+            ) {
+                lineItems.addAll(
+                    quoteLinesByQuoteId.get(
+                        (Id) lineItem.get(MappingUtilities.getQuoteLineQuoteApiName())
+                    )
+                );
             }
-            quoteLinesByQuoteId.put(lineItem.QuoteId, lineItems);
+            quoteLinesByQuoteId.put(
+                (Id) lineItem.get(MappingUtilities.getQuoteLineQuoteApiName()),
+                lineItems
+            );
         }
         return quoteLinesByQuoteId;
     }

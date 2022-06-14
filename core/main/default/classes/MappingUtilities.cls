@@ -4,10 +4,7 @@ public with sharing class MappingUtilities {
     public static FieldMappingConfiguration qliToSapMapping {
         get {
             if (qliToSapMapping == null) {
-                String className = SettingsUtilities.packageSettings.QliToSapFieldMappingPlugin__c ==
-                    null
-                    ? 'QuoteLineToSalesAgreementProductMapping'
-                    : SettingsUtilities.packageSettings.QliToSapFieldMappingPlugin__c;
+                String className = SettingsUtilities.getQliToSapFieldMappingPlugin();
                 Type mappingConfig = Type.forName(className);
                 if (mappingConfig == null) {
                     throw new MappingException(
@@ -22,6 +19,18 @@ public with sharing class MappingUtilities {
             return qliToSapMapping;
         }
         private set;
+    }
+
+    public static String getQuoteLineQuoteApiName() {
+        return SettingsUtilities.isCpqEnabled() ? 'SBQQ__Quote__c' : 'QuoteId';
+    }
+
+    public static String getPriceBookEntryIdApiName() {
+        return SettingsUtilities.isCpqEnabled() ? 'SBQQ__PricebookEntryId__c' : 'PriceBookEntryId';
+    }
+
+    public static String getQuoteLineObjectApiName() {
+        return SettingsUtilities.isCpqEnabled() ? 'SBQQ__QuoteLine__c' : 'QuoteLineItem';
     }
 
     public class MappingException extends Exception {

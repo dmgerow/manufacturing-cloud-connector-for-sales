@@ -8,15 +8,16 @@ public with sharing class SalesAgreementModel {
     }
 
     // creates sales agreement products from quote lines
-    public void createSalesAgreementProducts(List<QuoteLineItem> quoteLineItems) {
+    public void createSalesAgreementProducts(List<SObject> quoteLineItems) {
         if (quoteLineItems == null) {
             return;
         }
         this.salesAgreementProductsByPbe = new Map<Id, SalesAgreementProduct>();
-        for (QuoteLineItem quoteLine : quoteLineItems) {
+        for (Sobject quoteLine : quoteLineItems) {
             if (
                 SettingsUtilities.packageSettings.MatchQliAccountToSaAccount__c &&
-                quoteLine.AccountId__c != salesAgreement.AccountId
+                (Id) quoteLine.get(SettingsUtilities.getQuoteLineAccountField()) !=
+                salesAgreement.AccountId
             ) {
                 continue;
             }
@@ -40,7 +41,7 @@ public with sharing class SalesAgreementModel {
     }
 
     public void mapFieldsFromQuoteLine(
-        QuoteLineItem quoteLine,
+        SObject quoteLine,
         SalesAgreementProduct salesAgreementProduct
     ) {
         for (
