@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AccountId__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >Used to tie a quote line to a specific Account. Use this if you enable the Match QLI Account to SA Account setting to map which sales agreements this quote line will be added to.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Used to tie a quote line to a specific Account. Use this if you enable the Match QLI Account to SA Account setting to map which sales agreements this quote line will be added to.</inlineHelpText>
+    <label>Account ID</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Quote Lines</relationshipLabel>
+    <relationshipName>QuoteLines</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

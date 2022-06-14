@@ -8,16 +8,16 @@
       "versionNumber": "1.1.0.NEXT",
       "ancestorVersion": "HIGHEST",
       "releaseNotesUrl": "https://github.com/dmgerow/manufacturing-cloud-connector-for-sales/blob/main/README.md",
-      "definitionFile": "config/project-scratch-def.json"
+      "definitionFile": "config/core-scratch-def.json"
     },
     {
       "path": "cpq",
       "default": false,
-      "package": "Manufacturing Cloud Connector for Sales (CPQ Extension)",
+      "package": "Manufacturing Cloud Connector for CPQ",
       "versionName": "1.0.0",
       "versionNumber": "1.0.0.NEXT",
       "releaseNotesUrl": "https://github.com/dmgerow/manufacturing-cloud-connector-for-sales/blob/main/README.md",
-      "definitionFile": "config/project-scratch-def.json",
+      "definitionFile": "config/cpq-scratch-def.json",
       "dependencies": [
         {
           "package": "Manufacturing Cloud Connector for Sales",

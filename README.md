@@ -149,12 +149,13 @@ private class MyMappingPlugin_Test {
 **Note: the connector does not do anything out of the box. It needs to be invoked via apex or flow (see [Setup and Usage](https://salesforce.quip.com/67hZAQvgiwvM#temp:C:LQZc2e2935b20e8417cb3a514e9c))**
 
 1. Run `npm install` (only required after cloning project for the first time)
-2. Create scratch org
-3. Push source `sfdx force:source:push`
-4. Assign permission sets `sfdx force:user:permset:assign -n "ManufacturingSalesAgreementsPsl,ManufacturingCloudConnecterForSales"`
-5. Seed sample data `sfdx force:apex:execute -f scripts/apex/data-setup.apex`
-6. Add products to your newly created quote
-7. Perform development/testing as needed
+2. Create scratch org (use `config/cpq-scratch-def.json` to work with both packages)
+3. Install Salesforce CPQ using the alias in the `sfdx-project.json`
+4. Push source `sfdx force:source:push`
+5. Assign permission sets `sfdx force:user:permset:assign -n "ManufacturingSalesAgreementsPsl,ManufacturingCloudConnecterForSales,ManufacturingCloudConnectorForCpq"`
+6. Seed sample data `sfdx force:apex:execute -f scripts/apex/data-setup.apex`
+7. Add products to your newly created quote
+8. Perform development/testing as needed
 
 There is no SObject (e.g. Sales Agreement) page layout metadata in this project. You will need to manually add the custom fields from this package to your layouts if you would like them to be visible.
 

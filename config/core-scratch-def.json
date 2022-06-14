@@ -1,0 +1,19 @@
+{
+  "orgName": "dgerow company",
+  "edition": "Developer",
+  "features": ["IndustriesMfgTargets"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "industriesManufacturingSettings": {
+      "enableIndManufacturing": true
+    },
+    "quoteSettings": {
+      "enableQuote": true
+    }
+  }
+}
