@@ -11,7 +11,7 @@ public with sharing class SettingsUtilities {
     }
 
     public static String getSaAccountFieldApiName() {
-        return String.isBlank(packageSettings.SaAccountFieldApiName__c) == null
+        return String.isBlank(packageSettings.SaAccountFieldApiName__c)
             ? 'AccountId'
             : packageSettings.SaAccountFieldApiName__c;
     }
