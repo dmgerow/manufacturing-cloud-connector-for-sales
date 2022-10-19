@@ -19,6 +19,7 @@ This connector is used to facilitate the conversion of a Quote to one or many Sa
    1. If the `Match QLI Account to SA Account` setting is enabled, only quote lines with the same Account ID (`AccountId__c`) as the Sales Agreement (`AccountId`) will be added to the Sales Agreement. This helps you facilitate the conversion of one quote to multiple Sales Agreements (e.g. one quote has multiple ship to addresses that need different sales agreements). Note that to use this you will still need to
       1. Make the Sales Agreements
       2. Make sure that the `AccountId__c` on the quote line is populated
+      3. If you would like to use a field other than the Sales Agreement `AccountId` to match accounts with your quote lines, you can specify this field in the `Sales Agreement Account Field API Name` custom setting
    2. The package comes with default mappings that represent the minimum required fields to make a Sales Agreement Product in Manufacturing Cloud. You can update the default mappings and make additional mapping records are needed. Note that the custom metadata mappings are ignored if you use an Apex Mapping Plugin
 3. If a Sales Agreement Product already exists for the Quote Line’s PriceBookEntryId, the records are merged. This is because a PriceBookEntry can only exist once per Sales Agreement.
 4. The new Sales Agreement Products are inserted.
