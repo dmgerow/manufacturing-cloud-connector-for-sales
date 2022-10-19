@@ -4,8 +4,8 @@
       "path": "core",
       "default": true,
       "package": "Manufacturing Cloud Connector for Sales",
-      "versionName": "1.2.0",
-      "versionNumber": "1.2.0.NEXT",
+      "versionName": "1.3.0",
+      "versionNumber": "1.3.0.NEXT",
       "ancestorVersion": "HIGHEST",
       "releaseNotesUrl": "https://github.com/dmgerow/manufacturing-cloud-connector-for-sales/blob/main/README.md",
       "definitionFile": "config/project-scratch-def.json"
