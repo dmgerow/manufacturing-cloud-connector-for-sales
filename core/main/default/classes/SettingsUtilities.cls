@@ -9,4 +9,10 @@ public with sharing class SettingsUtilities {
         }
         private set;
     }
+
+    public static String getSaAccountFieldApiName() {
+        return String.isBlank(packageSettings.SaAccountFieldApiName__c) == null
+            ? 'AccountId'
+            : packageSettings.SaAccountFieldApiName__c;
+    }
 }

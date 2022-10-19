@@ -16,7 +16,8 @@ public with sharing class SalesAgreementModel {
         for (QuoteLineItem quoteLine : quoteLineItems) {
             if (
                 SettingsUtilities.packageSettings.MatchQliAccountToSaAccount__c &&
-                quoteLine.AccountId__c != salesAgreement.AccountId
+                quoteLine.AccountId__c !=
+                (String) salesAgreement.get(SettingsUtilities.getSaAccountFieldApiName())
             ) {
                 continue;
             }
