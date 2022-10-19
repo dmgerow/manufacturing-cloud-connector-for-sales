@@ -14,7 +14,7 @@
   "name": "manufacturing-cloud-connector-for-sales",
   "namespace": "MfgConnect",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "55.0",
+  "sourceApiVersion": "56.0",
   "packageAliases": {
     "Manufacturing Cloud Connector for Sales": "0Ho8b0000008OJICA2",
     "Manufacturing Cloud Connector for Sales@1.0.0-1": "04t8b000000gv7qAAA",
