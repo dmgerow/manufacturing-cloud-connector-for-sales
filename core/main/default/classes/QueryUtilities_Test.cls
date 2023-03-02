@@ -5,7 +5,7 @@ private class QueryUtilities_Test {
         System.runAs(TestUtilities.testUser) {
             Test.startTest();
             System.assertEquals(
-                'SELECT QuoteId, AccountId__c, Id, Name ',
+                'SELECT QuoteId, AccountId__c, SalesAgreementKey__c, Id, Name ',
                 QueryUtilities.getFieldString(new Set<String>{ 'Id', 'Name' })
             );
             Test.stopTest();
