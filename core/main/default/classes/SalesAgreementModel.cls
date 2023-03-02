@@ -21,6 +21,12 @@ public with sharing class SalesAgreementModel {
             ) {
                 continue;
             }
+            if (
+                SettingsUtilities.packageSettings.MatchQliKeyToSaKey__c &&
+                quoteLine.SalesAgreementKey__c != salesAgreement.SalesAgreementKey__c
+            ) {
+                continue;
+            }
             SalesAgreementProduct salesAgreementProduct = new SalesAgreementProduct();
             salesAgreementProduct.SalesAgreementId = salesAgreement.Id;
             mapFieldsFromQuoteLine(quoteLine, salesAgreementProduct);
