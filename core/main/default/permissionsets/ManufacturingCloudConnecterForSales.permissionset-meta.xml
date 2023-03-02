@@ -57,6 +57,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>QuoteLineItem.SalesAgreementKey__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>SalesAgreement.ContactId</field>
         <readable>true</readable>
@@ -64,6 +69,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SalesAgreement.Quote__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SalesAgreement.SalesAgreementKey__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
