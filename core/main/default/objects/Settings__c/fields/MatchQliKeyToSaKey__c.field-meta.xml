@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MatchQliKeyToSaKey__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Only add Sales Agreement Products to Sales Agreements when the Quote Line&apos;s SA Key matches the Sales Agreement&apos;s SA Key. Can be used with the Match QLI Account to SA Account setting.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Only add Sales Agreement Products to Sales Agreements when the Quote Line&apos;s SA Key matches the Sales Agreement&apos;s SA Key. Can be used with the Match QLI Account to SA Account setting.</inlineHelpText>
+    <label>Match QLI Key to SA Key</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
