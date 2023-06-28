@@ -58,9 +58,11 @@ public with sharing class SalesAgreementModel {
                 'InitialPlannedQuantity'
             ) {
                 // InitialPlannedQuantity is an integer
+                // Always round up to nearest whole number so that nothing is undercounted.
+                Decimal initialPlannedQuantity = (Decimal) quoteLine.get(sourceField);
                 salesAgreementProduct.put(
                     MappingUtilities.qliToSapMapping.sourceToTargetMapping().get(sourceField),
-                    Integer.valueOf(quoteLine.get(sourceField))
+                    Integer.valueOf(initialPlannedQuantity?.round(System.RoundingMode.CEILING))
                 );
             } else {
                 salesAgreementProduct.put(

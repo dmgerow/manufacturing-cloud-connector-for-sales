@@ -25,6 +25,30 @@ private class QuoteToSalesAgreementService_Test {
     }
 
     @isTest
+    static void createSalesAgreementProductsFractionalQuantity() {
+        System.runAs(TestUtilities.testUser) {
+            SalesAgreement testAgreement = TestUtilities.testSalesAgreement;
+            QuoteLineItem qli = TestUtilities.testQuoteLine;
+            qli.Quantity = 0.1;
+            update qli;
+            Test.startTest();
+            QuoteToSalesAgreementService.createSalesAgreementProducts(
+                new List<SalesAgreement>{ testAgreement }
+            );
+            Test.stopTest();
+            List<SalesAgreementProduct> saps = [
+                SELECT InitialPlannedQuantity, SalesPrice
+                FROM SalesAgreementProduct
+                WHERE SalesAgreementId = :testAgreement.Id
+            ];
+            System.assertEquals(1, saps.size());
+
+            System.assertEquals(1, saps[0].InitialPlannedQuantity);
+            System.assertEquals(1000, saps[0].SalesPrice);
+        }
+    }
+
+    @isTest
     static void createSalesAgreementProductsMatchQuotesAndKeys() {
         System.runAs(TestUtilities.testUser) {
             insert new Settings__c(
